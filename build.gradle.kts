@@ -61,22 +61,22 @@ spotless {
 jmh { includeTests.set(true) }
 
 dependencies {
-  compileOnly("com.google.code.findbugs:jsr305:3.0.2")
+  compileOnly("com.github.spotbugs:spotbugs-annotations:4.9.3")
 
   // https://mvnrepository.com/artifact/com.google.guava/guava
-  testImplementation("com.google.guava:guava:31.1-jre")
+  testImplementation("com.google.guava:guava:33.4.8-jre")
   // https://mvnrepository.com/artifact/org.hamcrest/hamcrest
-  testImplementation("org.hamcrest:hamcrest:2.2")
+  testImplementation("org.hamcrest:hamcrest:3.0")
   // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
-  testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
-  testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.3")
-  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.3")
+  testImplementation("org.junit.jupiter:junit-jupiter-api:5.13.0-M3")
+  testImplementation("org.junit.jupiter:junit-jupiter-params:5.13.0-M3")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.13.0-M3")
 
   // https://mvnrepository.com/artifact/org.immutables/value
-  compileOnly("org.immutables:value:2.9.3:annotations")
-  annotationProcessor("org.immutables:value:2.9.3")
+  compileOnly("org.immutables:value:2.10.1:annotations")
+  annotationProcessor("org.immutables:value:2.10.1")
 
-  jmhAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.36")
+  jmhAnnotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.37")
 }
 
 tasks.test {
@@ -90,7 +90,7 @@ tasks.test {
 
 pmd {
   toolVersion = "6.55.0" // https://pmd.github.io/
-  reportsDir = file("${project.buildDir}/reports/pmd")
+  reportsDir = layout.buildDirectory.file("reports/pmd").get().asFile
   ruleSetFiles = files("${project.rootDir}/config/pmd-rules.xml")
   ruleSets = listOf() // We specify all rules in rules.xml
   isConsoleOutput = false
